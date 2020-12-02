@@ -19,5 +19,17 @@ class ArticlesController < ApplicationController
     redirect_to article_path(@article)
   end
 
-  # add edit and update methods here
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    # raise params.inspect
+    @article = Article.find(params[:id])
+    # params[:article].each { |k,v| params[:article].delete(k) if v.empty? } 
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    redirect_to article_path(@article)
+    # params.each { |k, v| params.delete(k) if v.empty? }
+  end
+
 end
